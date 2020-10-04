@@ -2,6 +2,7 @@
 #
 # Exercise 1.27
 import csv
+import sys
 def portfolio_cost(filename):
     with open(filename, 'rt') as file:
         portfolio = csv.reader(file)
@@ -11,5 +12,9 @@ def portfolio_cost(filename):
             sum += int(company[1]) * float(company[2])
     return sum
 
-sum = portfolio_cost('Data/portfolio.csv')
+if len(sys.argv) == 2:
+    filename = sys.argv[1]
+else:
+    filename = 'Data/portfolio.csv'
+sum = portfolio_cost(filename)
 print('Total cost:', sum)
